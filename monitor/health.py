@@ -45,15 +45,15 @@ class CheckResult:
     @property
     def icon(self) -> str:
         if self.ok:
-            return "✓"
-        return "✗" if self.required else "⚠"
+            return "[OK]  "
+        return "[FAIL]" if self.required else "[WARN]"
 
     def __str__(self) -> str:
         line = f"  {self.icon} [{self.kind}] {self.name}"
         if self.value:
             line += f" = {self.value}"
         if not self.ok and self.hint:
-            line += f"\n      hint: {self.hint}"
+            line += f"\n         hint: {self.hint}"
         return line
 
 
@@ -75,15 +75,15 @@ class HealthReport:
         return [c for c in self.checks if not c.required and not c.ok]
 
     def summary(self) -> str:
-        lines = [f"\n── Health check: {self.project} ──"]
+        lines = [f"\n-- Health check: {self.project} --"]
         for check in self.checks:
             lines.append(str(check))
         if self.ok:
-            lines.append(f"\n  ✓ All required checks passed.")
+            lines.append(f"\n  All required checks passed.")
         else:
-            lines.append(f"\n  ✗ {len(self.failed_required)} required check(s) failed — fix them before running.")
+            lines.append(f"\n  {len(self.failed_required)} required check(s) FAILED -- fix them before running.")
         if self.warnings:
-            lines.append(f"  ⚠  {len(self.warnings)} optional check(s) unavailable.")
+            lines.append(f"  {len(self.warnings)} optional check(s) unavailable.")
         return "\n".join(lines)
 
     def as_dict(self) -> dict[str, Any]:
