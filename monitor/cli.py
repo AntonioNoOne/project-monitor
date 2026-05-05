@@ -85,6 +85,14 @@ def cmd_cache_clear(args: argparse.Namespace) -> int:
 
 def main() -> None:
     _fix_stdout_encoding()
+    
+    # Auto-load .env file from current directory if python-dotenv is available
+    try:
+        from dotenv import load_dotenv
+        load_dotenv()
+    except ImportError:
+        pass
+
     parser = argparse.ArgumentParser(
         prog="pmonitor",
         description="project-monitor — pipeline health, checkpoints and failure logging.",
