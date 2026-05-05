@@ -16,6 +16,20 @@ import sys
 from pathlib import Path
 
 
+def _fix_stdout_encoding() -> None:
+    """Force UTF-8 stdout on Windows to avoid cp1252 UnicodeEncodeError."""
+    if hasattr(sys.stdout, "reconfigure"):
+        try:
+            sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+        except Exception:
+            pass
+    if hasattr(sys.stderr, "reconfigure"):
+        try:
+            sys.stderr.reconfigure(encoding="utf-8", errors="replace")
+        except Exception:
+            pass
+
+
 def cmd_health(args: argparse.Namespace) -> int:
     from monitor.health import HealthCheck
     h = HealthCheck(name=args.name)
@@ -70,6 +84,7 @@ def cmd_cache_clear(args: argparse.Namespace) -> int:
 
 
 def main() -> None:
+    _fix_stdout_encoding()
     parser = argparse.ArgumentParser(
         prog="pmonitor",
         description="project-monitor — pipeline health, checkpoints and failure logging.",
