@@ -18,7 +18,7 @@ rich = ["rich>=13"]     # optional pretty terminal output
 dev  = ["pytest>=8", "pyyaml>=6"]
 
 [project.urls]
-Repository = "https://github.com/jump-group/project-monitor"
+Repository = "https://github.com/AntonioNoOne/project-monitor"
 
 [project.scripts]
 pmonitor = "monitor.cli:main"

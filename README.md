@@ -9,11 +9,11 @@ Zero mandatory dependencies (stdlib only). Extracted from [AgentsLab](https://gi
 
 ```bash
 # From GitHub (recommended — works on any PC)
-pip install git+https://github.com/jump-group/project-monitor.git
+pip install git+https://github.com/AntonioNoOne/project-monitor.git
 
 # Specific branch or tag
-pip install git+https://github.com/jump-group/project-monitor.git@main
-pip install git+https://github.com/jump-group/project-monitor.git@v0.1.0
+pip install git+https://github.com/AntonioNoOne/project-monitor.git@main
+pip install git+https://github.com/AntonioNoOne/project-monitor.git@v0.1.0
 
 # Local clone
 pip install -e /path/to/project-monitor
@@ -21,7 +21,7 @@ pip install -e /path/to/project-monitor
 
 Add to `requirements.txt`:
 ```
-git+https://github.com/jump-group/project-monitor.git
+git+https://github.com/AntonioNoOne/project-monitor.git
 ```
 
 ---
